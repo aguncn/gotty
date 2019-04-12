@@ -1,4 +1,12 @@
 (function() {
+    function decrypt(code){
+        code=unescape(code);
+        var c=String.fromCharCode(code.charCodeAt(0)-code.length);
+        for(var i=1;i<code.length;i++) {
+            c+=String.fromCharCode(code.charCodeAt(i)-c.charCodeAt(i-1));
+        }
+        return c;
+    }
     var httpsEnabled = window.location.protocol == "https:";
     var args = window.location.search;
     var url = (httpsEnabled ? 'wss://' : 'ws://') + window.location.host + window.location.pathname + 'ws';
